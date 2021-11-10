@@ -1,6 +1,8 @@
 package com.example.prova.User;
 
 import com.example.prova.config.ModelMapperConf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
 public class UserService {
 
@@ -21,12 +24,18 @@ public class UserService {
     @Autowired
     private ModelMapperConf modelMapper;
 
+    Logger logger = LoggerFactory.getLogger(UserService.class);
+
     public List<UserDTO> findAll () {
         List<User> result = userRepository.findAll();
         return result.stream().map(UserDTO::from).collect(Collectors.toList());
     }
 
     public UserDTO create (UserForm obj) {
+        if(userRepository.findByEmail(obj.getEmail()).isPresent()){
+            logger.error("email ja existe",obj.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"email ja existe");
+        }
         User user = User.from(obj);
         return UserDTO.from(userRepository.save(user));
     }
