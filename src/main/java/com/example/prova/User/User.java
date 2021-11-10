@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class User {
     private Long id;
 
     private String name;
+    @Email
     private String email;
     private String telephone;
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,12 +27,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> create (@RequestBody UserForm obj) {
+    public ResponseEntity<UserDTO> create (@RequestBody @Valid UserForm obj) {
         return ResponseEntity.ok(service.create(obj));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> update (@PathVariable Long id, @RequestBody UserForm obj) {
+    public ResponseEntity<UserDTO> update (@PathVariable Long id, @RequestBody @Valid UserForm obj) {
         return ResponseEntity.ok(service.update(id, obj));
     }
 
