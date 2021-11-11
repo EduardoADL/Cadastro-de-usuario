@@ -36,6 +36,10 @@ public class UserService {
             logger.error("email ja existe",obj.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"email ja existe");
         }
+        if(userRepository.findByEmail(obj.getTelephone()).isPresent()){
+            logger.error("telefone ja cadastrado",obj.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST," telefone ja existe");
+        }
         User user = User.from(obj);
         return UserDTO.from(userRepository.save(user));
     }
