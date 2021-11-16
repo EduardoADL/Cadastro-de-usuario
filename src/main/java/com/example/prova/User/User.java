@@ -1,5 +1,6 @@
 package com.example.prova.User;
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
@@ -18,6 +19,7 @@ public class User {
 
     private String name;
     @Email
+    @Column(unique = true)
     private String email;
     private String telephone;
 

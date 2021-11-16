@@ -41,7 +41,7 @@ public class UserTest {
         UserForm userForm = new UserForm("Eduardo", "du-eduardo10@hotmail.com","45984152806" );
         User userFinal = userRepository.save(User.from(userForm));
 
-        UserForm userForm1 = new UserForm("Eduardo", "edualklkl@hotmail.com","45984152806" );
+        UserForm userForm1 = new UserForm("Eduardo", "du-eduardo10@hotmail.com","45984152806" );
 
         if(userRepository.findByEmail(userForm1.getEmail()).isPresent()){
 

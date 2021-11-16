@@ -1,10 +1,15 @@
 package com.example.prova.User;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.modelmapper.ModelMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.convention.MatchingStrategies;
+
+import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 
 @Data
 @AllArgsConstructor
@@ -13,6 +18,8 @@ public class UserDTO {
 
     private Long id;
     private String name;
+    @Email
+    @Column(unique = true)
     private String email;
     private String telephone;
 
