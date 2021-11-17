@@ -19,6 +19,8 @@ public class UserForm {
     @Email
     @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String telephone;
 
 

@@ -21,6 +21,7 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String telephone;
 
 

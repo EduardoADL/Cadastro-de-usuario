@@ -21,6 +21,8 @@ public class UserDTO {
     @Email
     @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String telephone;
 
 
