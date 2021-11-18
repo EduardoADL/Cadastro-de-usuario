@@ -34,48 +34,6 @@ public class UserTest {
     }
 
 
-    @Test
-    @Rollback(false)
-    public void EmailTest() {
-
-        UserForm userForm = new UserForm("Eduardo", "du-eduardo10@hotmail.com","45984152806" );
-        User userFinal = userRepository.save(User.from(userForm));
-
-        UserForm userForm1 = new UserForm("Eduardo", "du-eduardo10@hotmail.com","45984152806" );
-
-        if(userRepository.findByEmail(userForm1.getEmail()).isPresent()){
-
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"email ja existe");
-        }
-
-        User userFinal1 = userRepository.save(User.from(userForm1));
-
-        assertEquals(userFinal1.getEmail(), userForm1.getEmail());
-
-
-    }
-
-    @Test
-    @Rollback(false)
-    public void TelephoneTest() {
-
-        UserForm userForm2 = new UserForm("Eduardo", "du-eduardo10@hotmail.com","45984152806" );
-        User userFinal2 = userRepository.save(User.from(userForm2));
-
-        UserForm userForm3 = new UserForm("Eduardo", "edualklkl@hotmail.com","45984155487" );
-
-        if(userRepository.findByTelephone(userForm3.getTelephone()).isPresent()){
-
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"telephone ja existe");
-        }
-
-        User userFinal3 = userRepository.save(User.from(userForm3));
-
-        assertEquals(userFinal3.getEmail(), userForm3.getEmail());
-
-
-    }
-
 
 
 }
